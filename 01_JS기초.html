@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 확장 프로그램 : rainbow brackets, live server, indent-rainbow, prettier, auto rename tag -->
+    
+</body>
+</html>
+<script>
+    // let, const, var
+    let a = 10; // 변수. (값이 변할 수 있다)
+    // let a = 20; 오류
+    const b = 10; // 상수. (값이 정해져 있음)
+    // const b = 20; 오류
+    a = 20; //변수에 값을 재할당하기 ok
+    // b = 20; const는 이것도 no
+    
+    var c = 10; // 변수.
+    var c = 20; // 이미 변수가 있는데 다시 만들기도 ok (그래서 사용하지마라)
+
+    // *******************************************************************
+
+    var s = 'this is string text';
+    var s = "this si string text";
+    var s = `this is string text`; // ~ 키보드의 키 누르세요
+    var s2 = `this is string2`;
+    var s3 = s + s2;
+    console.log('s:',s);
+    console.log('s2:',s2);
+    console.log('s3:',s3);
+    console.log(1,        2,3,4,5);
+
+    // ********************************************************************
+
+    var name = '정예은';
+    var age = 50;
+    console.log('내 이름은 '+ name +'이고, 나이는 ' + (age + 1) + '입니다');
+    console.log('내 이름은', name, '이고, 나이는', (age + 1), '입니다');
+    console.log(`내 이름은 ${name}이고, 나이는 ${age+1}입니다`);
+    
+    // ********************************************************************
+    
+    // '문자열~~\n \t \r'
+    console.log('안\n녕\t하');
+    console.log("내이름. '정예은'");
+    console.log(`내이름. '정예은'`);
+    
+    // ********************************************************************
+
+    var number = '10';
+    var result = number + 5;
+    console.log('result:', result); // 105
+    var result = +number + 5;
+    console.log('result:', result); // 15
+    var result = 5 + +number;
+    console.log('result:', result); // 15
+
+    var number = '12';
+    var result = number - 5
+    console.log('result:', result); // 7
+    var result = number - 0
+    console.log('result:', result); // 12
+    var result = 5 - number
+    console.log('result:', result); // -7
+
+    // ********************************************************************
+
+    var check = true; // 1
+    var check = false; // 0
+    console.log(!!1); // true
+</script>
+
+
+
+
