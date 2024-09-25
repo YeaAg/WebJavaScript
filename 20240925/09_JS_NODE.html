@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    div:nth-child(2){
+        color: red;
+    }
+</style>
+<body>
+    <section>
+        <div class="element">DIV1</div>
+        <div class="element">DIV2</div>
+        <div class="element">DIV3</div>
+    </section>
+
+    <section>
+        <span class="element">SPAN1</span>
+        <span class="element">SPAN2</span>
+        <span class="element">SPAN3</span>
+    </section>
+
+    <article id="myArticle">
+        ARTICLE
+        <input type="text" name="myName">
+    </article>
+</body>
+</html>
+<script>
+    const body = document.body;
+    console.log(body);
+    const firstChild = body.firstChild;
+    console.log(firstChild);
+    const lastChild = body.lastChild;
+    console.log(lastChild);
+    
+    const firstElementChild = body.firstElementChild;
+    console.log('firstElementChild:', firstElementChild);
+    
+    const parentElement = firstElementChild.parentElement;
+    console.log(parentElement);
+    
+    //***********************************************************
+
+    // 해당 이름에 맞는 태그들을 전부 배열에 모아서 가져온다
+    const sections = document.getElementsByTagName('section');
+    console.log(sections);
+    const articles = document.getElementsByTagName('article');
+    console.log(articles[0]);
+    
+    // 'element' 라는 클래스가 붙은 요소 전부 배열로 가져오기
+    const elements = document.getElementsByClassName('element');
+    console.log(elements); // 이것도 배열처럼 인덱스로 가져올 수 있음
+    
+    // 태그 속성 중 name='myName'이 붙은 요소 전부 배열로 가져오기
+    const myNames = document.getElementsByName("myName");
+    console.log(myNames);
+    
+    // 하나만 가져온다! 배열 아님!
+    const myArticle = document.getElementById('myArticle');
+    console.log(myArticle);
+    
+    /***********************querySelector***********************/
+    // querySelector: 문서 위에서부터 훑으며 처음 발견된 요소 가져오고 바로 끝!
+    const div = document.querySelector('div');
+    console.log(div);
+    // querySelectorAll: getElementsBy...랑 비슷하게 일치하는 모든 요소를 배열로 가져옴
+    const divs = document.querySelectorAll('div');
+    console.log(divs);
+    // querySelector는 css 선택자와 동일한 문법을 사용할 수 있다
+    const div2Child = document.querySelector('div:nth-child(2)');
+    console.log(div2Child);
+    const elements2 = document.querySelectorAll('.element');
+    console.log(elements2);
+
+    /***********************************************************/
+    // body가져오는 3가지 방법
+    document.body;
+    document.querySelector('body');
+    document.getElementsByTagName('body')[0];
+</script>

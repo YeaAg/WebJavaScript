@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var arr = [10, 20, 30, 40];
+    // index 0 ~ 2(는 포함 안하고) 까지 데이터를 교체하기
+    // arr[0] = 50;
+    // arr[1] = 50;
+    arr.fill(50, 0, 2);
+    console.log('fill:', arr); // [50, 50, 30, 40]
+
+    //// reverse() : arr 내용을 역순으로 재배치하기
+    arr.reverse();
+    console.log('reverse:', arr);
+    
+    //// splice(index, count, ....)
+    // index: 데이터 넣을 위치
+    // count: 기존 배열에서 해당 index로부터 지울 데이터 개수
+    // ...: 넣을 데이터들
+    var arr = [10, 20, 30, 40];
+    arr.splice(0, 0, 100);
+    console.log('splice-1:', arr); // [100, 10, 20, 30, 40]
+
+    var arr = [10, 20, 30, 40];
+    arr.splice(0, 2, 100, 200 ,300 );
+    console.log('splice-2:', arr); // [100, 200, 300, 30, 40]
+    
+    //// indexOf
+    var arr = [10, 20, 30, 40, 30, 30];
+    var result = arr.indexOf(30); // 왼쪽부터 30을 찾아라
+    console.log('30 l-index =>', result); // 2
+    var result = arr.lastIndexOf(30); // 오른쪽부터 30을 찾아라
+    console.log('30 r-index =>', result); // 5
+
+    //// slice(); ****
+    var result = arr.slice(0, 3); // 0 ~ 3까지만 잘라서 가져와라
+    console.log(result); // [10, 20, 30]
+    var result = arr.slice(-3, -1); // 뒤에서부터 세는 마이너스 인덱스 사용가능!
+    console.log(result); // [40, 30]
+    
+    //// join() ***
+    var arr = ['a', 'b', 'c', 'd'];
+    // 'abcd'를 만들고 싶다!
+    var result = arr.join('-'); // 'a-b-c-d'
+    console.log('join:', result);
+    
+    //// 두 배열을 합치기
+    var arr1 = [1, 2, 3];
+    var arr2 = [4, 5, 6];
+    var result = arr1 + arr2;
+    console.log('arr1 + arr2:', result); // 1,2,34,5,6
+    var result = arr1.concat(arr2);
+    console.log('arr1 + arr2:', result);  // [1, 2, 3, 4, 5, 6]
+
+    // ********************************************************************
+    console.log('*****************************');
+    
+    var arr = [10, 20, 30, 500, 40, 50, 60, 70];
+    // every: false 반환이 하나라도 있으면 false, 아니면 true
+    var result = arr.every( num => num < 100 ); // false
+    console.log('every 결과:', result); // false
+    // some: true 반환이 하나라도 있으면 true, 아니면 false
+    var result = arr.some( num => num < 100 ); // true
+    console.log('every 결과:', result);
+
+    var arr = [10, 20, 30, 40, 50, 60, 70];
+    // foreach: 배열 내의 요소를 처음부터 끝까지 순서대로 순회
+    arr.forEach( num => console.log(num) );
+    arr.forEach( console.log );
+
+    var arr = [ 1, 5, 7, 513, 5486, 1, 1, 321, 523, 564, 51, 32153, 4];
+    // arr에 있는 요수 중 홀수만 result에 담아주세요
+    var result = [];
+
+    for(let i = 0;i < arr.length ;i++){
+        if( arr[i] %2 == 1){
+            result.push(arr[i]);
+        }
+    }
+    console.log(result);
+    
+    // filter에 전달된 함수에서 true가 반환된 요소만 result 배열에 들어감!
+    var result = arr.filter( num => num % 2 == 1 );
+    console.log(result);
+
+    // ********************************************************************
+    
+    var arr = [1, 2, 3, 4, 5, 6];
+    var result = arr.map( num => (num % 2 == 0) ? num * 10 : num );
+    // function multiple(num){
+    //     if( num % 2 ==0 ){
+    //         return num & 10
+    //     }
+    //     return num;
+    // }
+    console.log(result);
+    /*****************삼항식*****************/
+    var test = (1==1)? '1이네요': '1이 아니네요';
+    console.log(test);
+    
+    
+    // ********************************************************************
+    
+    var arr = [1, 2, 3, 4, 5];
+    var sum = 0;
+    for(let i = 0; i < arr.length; i++){
+        sum += arr[i];
+    }
+    console.log(sum);
+
+    // reduce의 결과는 마지막 return의 결과
+    var result = arr.reduce(my_sum, 0);
+    function my_sum(result, current){
+        console.log(result, current);
+        return result + current;
+    }
+
+    // ********************************************************************
+
+    var arr = [[1,2],[10,20],[[5,5,5]]]
+    var result = [1,[2,3,4,5],6].flat();
+    console.log(result);
+    
+    // ********************************************************************
+    
+    var arr = [ 4,584,64,54,531,8,41];
+    arr.sort( (x, y) => x - y); // [4, 8, 41, 54, 64, 531, 584]
+    arr.reverse(); // [584, 531, 64, 54, 41, 8, 4]
+    console.log(arr);
+</script>

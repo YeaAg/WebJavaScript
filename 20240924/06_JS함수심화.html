@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head><body></body></html>
+<script>
+    function func1(){
+        console.log('func1이 실행되었다!');        
+    }
+    function func2(){
+        console.log('func2가 실행되었다!');
+    }
+    function func3(callback){
+        console.log('func3이 실행되었다!');
+        console.log(callback); // (toString)함수를 문자열화1
+        callback();
+    }
+    func3(func2);
+    var functionString = func3.toString(); // (toString)함수를 문자열화2
+    console.log(functionString);
+</script>
