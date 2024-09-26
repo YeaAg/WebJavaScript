@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form name="form1" action="03_JS_Table_Node.html" method="post">
+        DATA: <input name="data" type="text"><br>
+        PW: <input type="password"><br>
+        <button type="button">보내기</button>
+        <input type="reset">
+        <input type="button" value="단순버튼">
+        <input type="submit">
+    </form>
+
+    <form name="form2" action="#">
+        <input type="text" value="ㅋㅋ">
+        <select>
+            <option disabled selected>통신사</option>
+            <option value="1">KT</option>
+            <option value="2">LG</option>
+            <option>SK</option>
+        </select>
+        <button type="button">선택?</button>
+    </form>
+</body>
+</html>
+<script>
+    const form1 = document.forms[0];
+    // = document.forms.item(0);
+    // = document.forms.namedItem('form1');
+    
+    form1.action = '';
+    form1.method = 'get';
+    // form1.submit(); 무한 전송하기 때문에 사용X
+    
+    const form2 = document.forms.namedItem('form2');
+    const button = form2.querySelector('button');
+    button.name = 'button명'; // = button.setAttribute('name', '버튼이름!');
+    button.onclick = () => {
+        const select = form2.querySelector('select');
+        console.log(select.value);
+    }
+</script>

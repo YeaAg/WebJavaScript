@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    section {
+        width: 200px;
+        height: 200px;
+        background-color: aquamarine;
+    }
+</style>
+<body>
+    <input type="text">
+    <section>SECTION^-^</section>
+</body>
+</html>
+<script>
+    const input = document.querySelector('input');
+    const section = document.querySelector('section');
+
+    input.style.color = 'red';
+    input.style.backgroundColor = 'black';
+    input.style.fontSize = '25px';
+
+    console.log(input.style.color);
+
+    console.log('style width:', section.style.width); // 못 가져옴 (태그에 붙어 있는 것만 가져오기 가능)
+    console.log(
+        'computed width:',
+        getComputedStyle(section).width
+    );
+    // 문자열에서 px를 없애고 숫자로 만들어서 변경
+    const width = +getComputedStyle(section).width.replace('px','') / 2;
+    const height = +getComputedStyle(section).height.replace('px','') / 2;
+    console.log(width);
+    // 바꿀 때는 다시 문자열로 변경해서 넣기
+    section.style.width = width+'px';
+    section.style.height = `${height}px`;
+</script>

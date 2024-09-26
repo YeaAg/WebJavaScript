@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div>DIV태그!</div>
+    <input type="text">
+    <input type="checkbox">
+    <a href="#" class="link url">링크</a>
+</body>
+</html>
+<script>
+    const divTag = document.querySelector('div');
+    const aTag = document.querySelector('a');
+    const inputTag = document.querySelector('input');
+    const checkboxInputTag = document.querySelector('input[type=checkbox]');
+    console.log(checkboxInputTag);
+    
+    inputTag.value = '텍스트';
+    inputTag.placeholder = '문자를 입력하세요';
+    console.log(inputTag.value);
+    //// 객체 프로퍼티 설정처럼 설정하기
+    inputTag.type = 'password';
+    //// setAttribute로 속성을 설정하기
+    inputTag.setAttribute('type', 'password');
+    inputTag.removeAttribute('placeholder'); // 속성 지우기
+
+    //// 체크박스 체크하는 2가지 방법
+    // checkboxInputTag.checked = true;
+    // setAttribute의 2번째 인자로 ''(빈문자열) 작성 시 속성 이름만 설정된다
+    checkboxInputTag.setAttribute('checked','');
+    const isChecked = checkboxInputTag.hasAttribute('checked'); // 속성 있는지 없는지 확인
+    console.log(isChecked);
+    const attributes = checkboxInputTag.attributes; // 모든 속성 가져오기(사용 잘 안함)
+    console.log(attributes);
+    
+    divTag.myAttr = 'ㅋㅋㅋ'
+    console.log(divTag.myAttr);
+    divTag.setAttribute('myAttr2', 'ㅎㅎㅎ')
+    divTag.className = '하하하!';
+    divTag.id = '하하하!';
+    divTag.className = '히히히!';
+
+    const aTagClassList = aTag.classList;
+    console.log(aTagClassList);
+    aTagClassList.remove('url');
+    aTagClassList.add('aTag');
+
+    /***********************************************************/
+
+    aTag.toggleAttribute('href'); // 없어짐
+    aTag.toggleAttribute('href'); // 생김
+    aTag.toggleAttribute('href', false); // 있으면 없앰
+    aTag.toggleAttribute('href', true); // 없으면 만듦
+
+    aTag.remove();
+</script>

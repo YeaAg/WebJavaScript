@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>순번</th>
+                <th>제목</th>
+                <th>날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>제목1</td>
+                <td>2024-29-26</td>
+            </tr>
+        </tbody>
+    </table>
+    <section>
+        <div>
+            이름:<input type="text"><br>
+            나이:<input type="number">
+            <button type="button">추가</button>
+        </div>
+        <table id="person-list" border="1">
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>나이</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
+<script>
+    const table = document.querySelector('table');
+    // table.caption == table.querySelector('caption');
+    table.caption.textContent = '제목입니당';
+    // table.tBodies.item(0) == table.tBodies[0];
+    const tbody = table.tBodies.item(0);
+    const row1 = tbody.insertRow(1); // 1번 행 추가
+
+    // 차례대로 넣어야 함. 중간에 띄워서 입력은 불가
+    const row1col0 = row1.insertCell(0); // 1번행의 0번째 셀 값 추가
+    row1col0.textContent = '2';
+    const row1col1 = row1.insertCell(1);
+    row1col1.textContent = '제목2';
+    const row1col2 = row1.insertCell(2);
+    row1col2.textContent = '2024-29-26';
+
+    /***********************************************************/
+
+    const addButton = document.querySelector('section button');
+    const inputTag1 = document.querySelector('input[type=text]');
+    const inputTag2 = document.querySelector('input[type=number]');
+    // const inputs = document.getElementsByTagName('input');
+    // const textInput = inputs[0];
+    // const numberInput = inputs[1];
+    const personTable = document.querySelector('table[id="person-list"]');
+    // const personListTable = document.getElementById('person-list');
+    const body = personTable.tBodies.item(0);
+
+    addButton.onclick = () => {
+        const r = body.insertRow(0);
+        const r1c0 = r.insertCell(0);
+        r1c0.textContent = inputTag1.value;
+        const r1c1 = r.insertCell(1);
+        r1c1.textContent = inputTag2.value; 
+    }
+
+    // addButton.onclick = () => {
+    //     const name = textInput.value;
+    //     const age = numberInput.value;
+
+    //     const row = personListTable.tBodies[0].insertRow(0);
+    //     row.insertCell(0).textContent = name; // 셀 만들고 값 추가하는 거 한 번에
+    //     row.insertCell(1).textContent = age;
+    // }
+</script>

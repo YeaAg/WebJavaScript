@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: aquamarine;
+    }
+</style>
+<body>
+    <div onclick="inlinListener();"> <!-- 방법 1 -->
+        DIV^-^
+    </div>
+</body>
+</html>
+<script>
+    function inlinListener(){
+        console.log('div-inline-클릭!');
+    }
+
+    // 방법2
+    const div = document.querySelector('div');
+    div.onclick = propListener; // 위에 있는 거 덮어씀
+    function propListener(){
+        console.log('div-porp-클릭!');
+    }
+
+    // 방법3
+    div.addEventListener('click', eventListener)
+    function eventListener(event){ // 안 덮어씀
+        console.log('div-eventListener-클릭!');
+        console.log(event);
+        
+    }
+
+    div.addEventListener('click', () => {
+        console.log('화살표 동작~');
+    })
+</script>
