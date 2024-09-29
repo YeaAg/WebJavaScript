@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 스프레드 문법 (전개문법)
+    // 뭉쳐있는 것들을 하나로 펼친다!
+    // Array(배열), String(문자열), Map, Set 등... for-of 사용 가능한 요소들!
+    console.log(...[1, 2, 3]);
+    console.log(..."Hello");
+    // console.log(...{a: 1, b: 2}); // 불가능!
+    // var myList = ...[1,2,3]; // 변수에 대입 불가능! 값이 아님!
+    var maxValue = Math.max(4, 8, 7, 2, 6, 7, 5, 12);
+    console.log(maxValue);
+    var maxValue = Math.max(...[4, 8, 7, 2, 6, 7, 5, 12]); // ...없으면 NaN
+    console.log(maxValue);
+
+    var arr1 = [1, 2, 3];
+    var arr2 = [4, 5, 6];
+    // [1, 2, 3, 4, 5, 6]
+    // 방법1
+    var result = arr1.concat(arr2);
+    console.log(result);
+    // 방법2
+    var result = [...arr1, ...arr2];
+    console.log(result);
+
+    /////////////////////// 참조 형태... ///////////////////////
+    // 값 (Value) - 숫자, 문자
+    var val = 10;
+    var myVal = val;
+    myVal = 100;
+    console.log(val, myVal);
+    // 참조 (Reference)
+    var arr = [10];
+    var myArr = arr;
+    console.log(arr, myArr);
+    myArr[0] = 100;
+    console.log(arr, myArr);
+
+    /******************* 객체에서 사용하기 *******************/
+
+    var obj = { x: 1, y: 2};
+    var obj2 = { y: 10, z: 3};
+    var myObj = { ...obj }; // 객체 내용을 복제하기
+    console.log(myObj);
+    var myObj = { ...obj, ...obj2, a: 10 }; // 뒤에 오는 객체가 우선권을 가짐
+    console.log(myObj);
+    
+    /******************************************************/
+
+    // 디스트럭처링(distructuring, 구조 분해) 할당
+    // 구조화된 배열 또는 객체를 비구조화하여 1개 이상의 변수에 할당하는 문법
+    var arr = [1, 2, 3];
+    // var v1 = arr[0];
+    // var v2 = arr[1]; // ,,,,번거로움
+    var [v1, v2, v3] = [1, 2, 3];
+    var [v1, v2] = [1];
+    console.log(v1, v2); // 1 undefined
+    var [v1] = [1, 2];
+    console.log(v1); // 1
+    var [v1, ,v3] = [1, 2, 3];
+    console.log(v1, v3);
+    var [a, b, c = 3] = [1, 2];
+    var [a, b=1, c=3] = [1, 2]; // 1 2 3
+    
+    /********************** 객체에서 **********************/
+    var user = { firstName: 'Kim', lastName: 'Gil Dong'};
+    var {firstName, lastName} = user; // 프로퍼티명과 동일한 이름의 변수
+    console.log(firstName, lastName); // Kim Gil Dong
+    // 프로퍼티명과 다른 이름의 변수로 지정하고 싶은 경우
+    var {firstName:fn, lastName:ln} = user; 
+    console.log(fn, ln);
+    
+    var {middleName='Steve'} = user; // 객체어 middleName='d'이면 d가 출력됨
+    console.log(middleName);
+
+    /******************************************************/
+
+    var str = 'Hello';
+    var len = str.length
+    console.log(len);
+    var { length } = str;
+    console.log(length);
+
+    var todo = { id: 1, content: 'HTML', complete: true };
+    var id = todo.id;
+    var {id} = todo;
+
+    function printTodo({content}){
+        console.log(`할일: ${content}`);
+    }
+    printTodo(todo);
+
+    /******************************************************/
+
+    1 == 1;
+    1 === 1;
+    console.log('1 == true =>', 1 == true); // true
+    console.log('1 === true =>', 1 === true); // false (자료형까지 비교)
+    
+    console.log('true == "abc" =>', true == "abc"); // false
+    console.log('true == [1,2,3] =>', true == [1,2,3]); // false
+    
+    console.log('false == "" =>', false == ""); // true
+    console.log('false == [] =>', false == []); // true
+    console.log('false === "" =>', false === ""); // false
+    console.log('false === [] =>', false === []); // false
+
+    /********************* 단축 평가 ***********************/
+    /******************* 옵셔널 체이닝 *********************/
+
+</script>

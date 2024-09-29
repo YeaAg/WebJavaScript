@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 200px;
+        height: 200px;
+        background-color: aquamarine;
+    }
+</style>
+<body>
+    <input type="text">
+    <div></div>
+</body>
+</html>
+<script>
+    const input = document.querySelector('input');
+    const div = document.querySelector('div');
+
+    input.onfocus = () => {
+        input.style.backgroundColor = 'blue';
+    }
+    input.onblur = () => {
+        input.style.backgroundColor = 'white';
+        input.style.color = 'black';
+    }
+    input.onclick = () => {
+        input.style.backgroundColor = 'black';
+        input.style.color = 'white';
+    }
+    input.ondblclick = () => {
+        input.style.fontSize = '25px';
+    }
+
+    // onmouseenter: 마우스가 div 안으로 들어왔을 때
+    div.onmouseenter = () => {
+        console.log('마우스 ENTER');
+    }
+    // div.onmousemove = () => { 
+    //     console.log('마우스가 아직 존재해요!!');
+    // }
+    div.onmouseleave = () => {
+        console.log('마우스 LEAVE');
+    }
+
+    div.onmousedown = () => {
+        console.log('마우스 DOWN');
+    }
+    div.onmouseup = () => {
+        console.log('마우스 UP');
+    }
+</script>

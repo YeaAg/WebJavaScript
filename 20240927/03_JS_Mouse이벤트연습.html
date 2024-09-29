@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        width: 200px;
+        height: 200px;
+        background-color: aquamarine;
+    }
+</style>
+<body>
+    <section>
+        <select>
+            <option disabled selected>색생선택</option>
+            <option>RED</option>
+            <option>BLUE</option>
+            <option>ORANGE</option>
+        </select>
+        <button>-10px</button>
+        <button>+10px</button>
+        테두리<input type="checkbox">
+        <div>조작해보세요^-^</div>
+    </section>
+</body>
+</html>
+<script>
+    const div = document.querySelector('div');
+    const select = document.querySelector('select');
+    const button = document.getElementsByTagName('button');
+    // const [minusBtn, plusBtn] = document.getElementsByTagName('button');
+    const input = document.querySelector('input');
+
+    select.onchange = () => {
+        div.style.backgroundColor = select.value;
+    }
+    
+    // minusBtn.onclick
+    button[0].onclick = () => {
+        div.style.width = (+getComputedStyle(div).width.replace('px','') - 10) +'px';
+        div.style.height = (+getComputedStyle(div).height.replace('px','') - 10) +'px';
+    }
+    // plusBtn.onclick
+    button[1].onclick = () => {
+        div.style.width = (+getComputedStyle(div).width.replace('px','') + 10) +'px';
+        div.style.height = (+getComputedStyle(div).height.replace('px','') + 10) +'px';
+    }
+
+    input.onchange = () => {
+        if(input.checked){
+            div.style.border = '10px solid black';
+        }
+        else{
+            div.style.border = 'none';
+        }
+    }
+    
+</script>
