@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>타이머</title>
+</head>
+<body>
+    <h1>타이머^-^</h1>
+    <section>
+        <button>시작(재시작)</button>
+        <button>일시정지</button>
+        <button>초기화</button>
+    </section>
+    <section>
+        <b id="hour">00</b>
+        <b>:</b>
+        <b id="min">00</b>
+        <b>:</b>
+        <b id="sec">00</b>
+    </section>
+</body>
+</html>
+<script>
+    const [startBtn, pauseBtn, resetBtn] = document.getElementsByTagName('button');
+    const hourB = document.getElementById('hour');
+    const minB = document.getElementById('min');
+    const secB = document.getElementById('sec');
+    let intervalId = null;
+
+    startBtn.onclick = () => {
+        intervalId = setInterval(() => {
+            let sec = +secB.textContent + 1;
+            let min = +minB.textContent;
+            let hour = +hourB.textContent;
+
+            if(sec >= 60){
+                sec = 0;
+                min++;
+                if(min >= 60){
+                    min = 0;
+                    hour++;
+                }
+            }
+            secB.textContent = change_2letters(sec); // '00'
+            minB.textContent = change_2letters(min);
+            hourB.textContent = change_2letters(hour);
+        }, 10)
+    }
+
+    pauseBtn.onclick = () => {
+        clearInterval(intervalId);
+    }
+
+    resetBtn.onclick = () => {
+        clearInterval(intervalId);
+        secB.textContent = change_2letters(0);
+        minB.textContent = change_2letters(0);
+        hourB.textContent = change_2letters(0);
+    }
+
+    function change_2letters(number){
+        return number < 10 ? '0' + number : number;
+    }
+</script>

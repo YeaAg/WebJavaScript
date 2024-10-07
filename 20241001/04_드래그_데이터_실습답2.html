@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        display: inline-block;
+        margin: 10px;
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+    }
+    #d1{
+        background-color: midnightblue;
+    }
+    #d2{
+        background-color: mediumvioletred;
+    }
+    #d3{
+        background-color: blueviolet
+        ;
+    }
+    #d4{
+        background-color: brown;
+    }
+</style>
+<body>
+    <section>
+        <div id="d1"></div>
+        <div id="d2"></div>
+    </section>
+    <section>
+        <div id="d3"></div>
+        <div id="d4"></div>
+    </section>
+</body>
+</html>
+<script>
+    const divs = document.getElementsByTagName('div');
+    const colorList = [];
+    for(let i =0; i < divs.length; i++){
+        colorList.push(getComputedStyle(divs[i]).backgroundColor);
+    }
+    for(let i =0; i < divs.length; i++){
+        divs[i].draggable = true;
+
+        divs[i].ondragstart = event => {
+            event.dataTransfer.setData('text/plain', colorList[i]);
+        }
+        divs[i].ondragover = event => {
+            event.preventDefault();
+        }
+        divs[i].ondrop = event => {
+            const color = event.dataTransfer.getData('text/plain');
+            divs[i].style.backgroundColor = color;
+        }
+    }
+</script>

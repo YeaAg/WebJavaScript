@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>타이머</title>
+</head>
+<body>
+    <h1>타이머^-^</h1>
+    <section>
+        <button>시작(재시작)</button>
+        <button>일시정지</button>
+        <button>초기화</button>
+    </section>
+    <section>
+        <b id="hour">00</b>
+        <b>:</b>
+        <b id="min">00</b>
+        <b>:</b>
+        <b id="sec">00</b>
+    </section>
+</body>
+</html>
+<script>
+    const [start, stop, reset] = document.querySelectorAll('button');
+    const [hour,a, min,b, sec] = document.getElementsByTagName('b');
+    const originaldata = hour.textContent;
+    function set_2length(number){
+        return Number(number) < 9 ? '0'+ (Number(number)+1) : (Number(number)+1);
+    }   
+    
+    start.onclick = () => {
+        const ing = setInterval(() => {
+            sec.textContent = set_2length(sec.textContent);
+            if (sec.textContent === '60'){
+                min.textContent = set_2length(min.textContent)
+                sec.textContent = originaldata;
+            }
+            if (min.textContent === '60'){
+                hour.textContent = set_2length(hour.textContent)
+                min.textContent = originaldata;
+            }
+        }, 150);
+        stop.onclick = () => {
+            clearInterval(ing);
+        }
+        reset.onclick = () => {
+            clearInterval(ing);
+            hour.textContent = originaldata;
+            min.textContent = originaldata;
+            sec.textContent = originaldata;
+
+        }
+    }
+</script>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    section{
+        display: grid;
+        grid-template-columns: repeat(3, 50px);
+        grid-template-rows: repeat(3, 50px);
+    }
+    div{
+        border: 1px solid black;
+    }
+    div:nth-child(5){
+        background-color: aquamarine;
+    }
+</style>
+<body>
+    <section>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+    </section>
+</body>
+</html>
+<script>
+    const div = document.getElementsByTagName('div');
+    var colorPosition = 4;
+    document.onkeydown = (event) => {
+        if(event.key == 'ArrowRight'){
+            for(let i =0;i<div.length;i++){
+                div[i].style.backgroundColor = 'unset';
+            }
+            colorPosition += 1;
+        }
+        else if(event.key == 'ArrowLeft'){
+            for(let i =0;i<div.length;i++){
+                div[i].style.backgroundColor = 'unset';
+            }
+            colorPosition -= 1;
+        }
+        else if(event.key == 'ArrowDown'){
+            for(let i =0;i<div.length;i++){
+                div[i].style.backgroundColor = 'unset';
+            }
+            colorPosition += 3;
+        }
+        else if(event.key == 'ArrowUp'){
+            for(let i =0;i<div.length;i++){
+                div[i].style.backgroundColor = 'unset';
+            }
+            colorPosition -= 3;
+        }
+        if(colorPosition >= div.length){
+            colorPosition = div.length-1;
+            div[colorPosition].style.backgroundColor = 'aquamarine'
+        }
+        else if(colorPosition < 0){
+            colorPosition = 0;
+            div[colorPosition].style.backgroundColor = 'aquamarine'
+        }
+        else{
+            div[colorPosition].style.backgroundColor = 'aquamarine'
+        }
+    }
+    for(let i =0;i<div.length;i++){
+        div[i].onclick = (event) => {
+            for(let j =0;j<div.length;j++){
+                div[j].style.backgroundColor = 'unset';
+            }
+            colorPosition = i;
+            div[i].style.backgroundColor = 'aquamarine';
+        }
+    }
+
+</script>

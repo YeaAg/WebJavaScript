@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // setTimeout(함수, ms); : 전달된 함수를 전달된 ms 이후에 한 번 실행
+    // setInterval(함수, ms); : 전달된 함수를 전달된 ms 이후 마다 실행
+    // console.log('코드가 실행!');
+    // setTimeout(my_to, 2000); // my_to함수를 2초 실행시켜라!
+    // setTimeout(my_to, 3000); // my_to함수를 2초 실행시켜라!
+    // console.log('코드가 끝남!');
+
+    // console.log('코드가 실행!');
+    // setInterval(my_to, 1000); // my_to를 1초마다 실행시켜라
+    // console.log('코드가 끝남!');
+    // // my_timeout!
+    // function my_to(){
+    //     console.log('my_to ^-^');
+    // }
+
+    // setTimeout이나 setInterval은 고유 id를 가진다 (숫자 형태)
+    const intervalId = setInterval(() => {
+        console.log('함수 실행중~1111');
+    }, 1000)
+    console.log(intervalId);
+    // intervalId에 해당하는 번호의 interval을 그만해라
+    clearInterval(intervalId);
+    
+    const intervalId2 = setInterval(() => {
+        console.log('함수 실행중~2222');
+    }, 1000)
+    console.log(intervalId2);
+    clearInterval(intervalId2);
+
+    /**********************************************************/
+
+    // 1초마다 log를 찍는데, 3초만 찍고 끝내겠다
+    const myIntervalId = setInterval(func, 1000);
+    // 3초 뒤에 clearInterval을 해야하는 구나!
+    setTimeout(()=>{
+        clearInterval(myIntervalId);
+    }, 3000);
+
+    function func(){
+        console.log('함수^0^');
+    }
+
+    //setTimeout(func2, 1000, '홍길동', 10);
+    setTimeout(() => {
+        func2('홍길동', 10);
+    }, 1000);
+
+    function func2(name, age){
+        console.log(`이름 ${name} / 나이: ${age}`);
+    }
+
+    /**********************************************************/
+    // 1번 함수를 1초 뒤에 실행시키고, 1번 함수가 끝나면(내용 실행 완료됐으면)
+    // 2번 함수를 1초 뒤에 실행시키고, 2번 함수가 끝나면
+    // 3번 함수를 1초 뒤에 실행할래!
+    // function f1(){
+    //     console.log('f1');
+    //     setTimeout(f2, 1000);
+    // }
+    // function f1(){
+    //     console.log('f1');
+    //     setTimeout(f2, 1000);
+    // }
+    // function f2(){
+    //     console.log('f2');
+    //     setTimeout(f3, 1000);
+    // }
+    // function f3(){
+    //     console.log('f3');
+    // }
+    // 콜백 지옥....
+    setTimeout(() => {
+        console.log('f1', new Date().getMilliseconds());
+        setTimeout(() =>{
+            console.log('f2', new Date().getMilliseconds());
+            setTimeout(() => {
+                console.log('f3', new Date().getMilliseconds());
+            },1000);
+        },1000);    
+    },1000);
+</script>

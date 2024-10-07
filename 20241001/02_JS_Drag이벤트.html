@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    div, section {
+        width: 200px;
+        height: 200px;
+        background-color: azure;
+        border: 1px solid black;
+        margin: 10px;
+    }
+</style>
+<body>
+    <a href="#">나 드래그 가능^-^</a>
+    <img width="100px" height="100px" src="https://i.namu.wiki/i/l0x04r27DjSQmS-WgYk6I5x6IkKMyvZjRMyK5dI3EMoMikzCd2Kfl2SMRdvL3-y4zpxI_qLP-fs3QToSR7AU3g.webp" alt="나도 드래그 가능 ㅋ">
+    <div></div>
+    <section></section>
+</body>
+</html>
+<script>
+    const aTag = document.querySelector('a');
+    // HTML 요소의 draggable 속성이 true인 것만 드래그 가능함
+    console.log(aTag.draggable); // true
+    const div = document.querySelector('div');
+    console.log(div.draggable); // false
+    aTag.draggable = false; // 드래그 불가능 하도록 함
+    div.draggable = true; // 드래그 가능하도록 함
+    
+    const section = document.querySelector('section');
+
+    div.ondragstart = () => {
+        console.log('div에서 드래그 시작');
+    }
+    div.ondrag = () => { // 안하는 게 좋음 (많이 실행 됨)
+        // console.log('div에서 드래그 중..');
+    }
+    div.ondragend = () => {
+        console.log('div에서 드래그 종료');
+    }
+
+    // drag 중에 해당 요소에 마우스가 들어왔다 나갔다 할 때
+    section.ondragenter = () => {
+        console.log('section에 드래그 요소가 들어왔어요');
+    }
+    section.ondragover = event => { // 안하는 게 좋음 (많이 실행 됨)
+        // console.log('section에 드래그 요소가 들어와있어요');
+        // dragover의 기본 동작이 정해져있어서 drop이벤트가 발생하지 않는다 
+        // dragover의 기본 동작을 취소한다 === drop 이벤트 실행됨
+        event.preventDefault(); // dragover의 기본동작을 취소한다
+    }
+    section.ondragleave = () => {
+        console.log('section에 드래그 요소가 나갔어요');
+    }
+    section.ondrop = () => {
+        console.log('드래그 중에 section에 마우스 놓았어요');
+    }
+</script>

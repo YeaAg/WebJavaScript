@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        지역시<input type="radio" name="locale" checked>
+        세계시<input type="radio" name="locale">
+    </section>
+    <section id="date-section">
+        <span></span>년
+        <span></span>월
+        <span></span>일
+    </section>
+    <section id="time-section">
+        <span></span>시
+        <span></span>분
+        <span></span>초
+    </section>
+</body>
+</html>
+<script>
+    // 1) 객체를 리터럴로 정의 + 생성!
+    var obj = { a: 1, b: 10, c: function(){}};
+    var obj2 = obj;
+    obj2.a = 100;
+    obj.c(); // 메서드를 호출!
+    console.log(obj);
+    
+    // 2) 객체를 함수로 정의!
+    function f_obj(){
+        this.a = 10;
+        this.b = 100;
+        this.c = function(){}
+    }
+    // 함수로 정의된 객체를 실제로 사용하려고 생성하기 위해서는 new 키워드 필수!
+    var obj = new f_obj();
+    obj.c(); // 메서드 호출!
+
+    // 3) class로 객체 정의
+    class C_obj{
+        constructor(){
+            this.a = 10;
+            this.b = 20;
+        }
+        c(){}
+    }
+    // new 키워드 안 쓰면 오류!!! class는 무조건 객체로만 동작한다
+    var obj = new C_obj();
+
+    /**********************************************************/
+    var s = 'ABC!!^-^';
+    var s = new String('ABC!^-^');
+    console.log(s);
+    
+    // 객체 생성 시 리터럴 형식 아니면 new 사용해서 객체 생성함
+    var now = new Date();
+    var year = now.getFullYear();
+    console.log('현재 년:',year);
+    var hour = now.getHours();
+    console.log('지역 시:',hour);
+    var hour = now.getUTCHours();
+    console.log('세계 시:',hour);
+    // 현재 시간에서 30분 더한 시간으로 잘~ 해준다
+    now.setMinutes(now.getMinutes() + 30);
+    console.log(now);
+    
+    console.log(now.toString());
+    console.log(now.toDateString());
+    console.log(now.toTimeString());
+    console.log(now.toLocaleString()); // 지역시
+    console.log(now.toLocaleDateString());
+    console.log(now.toLocaleTimeString());
+    console.log(now.toISOString()); // 프로그래밍 언어에서 제일 많이 사용됨****
+    console.log(now.toUTCString()); // 세계시
+    console.log(now.getTimezoneOffset());
+    console.log(now.toJSON());
+    
+    /**********************************************************/
+
+    const [local, global] = document.getElementsByTagName('input');
+    const [yearSpan, monthSpan, DaySpan] = document.getElementById('date-section').getElementsByTagName('span');
+    const [hourSpan, minSpan, secSpan] = document.getElementById('time-section').getElementsByTagName('span');
+    
+    local.onclick = () => {
+        setInterval(set_local_datetime, 1);
+    }
+    global.onclick = () => {
+        setInterval(set_global_datetime, 1);
+    }
+
+    var date = 4;
+    function set_2length(number){
+        return number < 10 ? '0' + number : number;
+    }
+    // var date = '4';
+    // var result = date.padStart(2, '0');
+    // console.log(result);
+
+    function set_local_datetime(){
+        const date = new Date();
+        yearSpan.textContent = date.getFullYear();
+        monthSpan.textContent = set_2length(date.getMonth()+1);
+        // Day: 요일 0(일) ~ 6(토), Date: 일
+        DaySpan.textContent = set_2length(date.getDate())
+        hourSpan.textContent = set_2length(date.getHours());
+        minSpan.textContent = set_2length(date.getMinutes());
+        secSpan.textContent = set_2length(date.getSeconds());
+    }
+    function set_global_datetime(){
+        const date = new Date();
+        yearSpan.textContent = date.getUTCFullYear();
+        monthSpan.textContent = set_2length(date.getUTCMonth()+1);
+        DaySpan.textContent = set_2length(date.getUTCDate())
+        hourSpan.textContent = set_2length(date.getUTCHours());
+        minSpan.textContent = set_2length(date.getUTCMinutes());
+        secSpan.textContent = set_2length(date.getUTCSeconds());
+    }
+</script>

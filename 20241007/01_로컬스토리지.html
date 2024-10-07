@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    window.localStorage;
+    // window는 생략 가능하니까..
+    // setItem(키, 값);
+    localStorage.setItem('data', 10);
+    localStorage.setItem('message', '헬로~');
+    // getItem(키);
+    const message = localStorage.getItem('message');
+    console.log(message);
+    // 없는 key에 해당하는 값을 가져오려고 하면 null
+    const abcd = localStorage.getItem('abcd');
+    console.log(abcd); // null
+    
+    const key0 = localStorage.key(0);
+    console.log(key0); // message
+    const key1 = localStorage.key(1);
+    console.log(key1); // data
+    const key2 = localStorage.key(2);
+    console.log(key2); // null
+
+    console.log(localStorage.length);
+    
+</script>

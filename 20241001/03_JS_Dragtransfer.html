@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    div, section {
+        width: 200px;
+        height: 200px;
+        background-color: azure;
+        border: 1px solid black;
+        margin: 10px;
+    }
+
+    div{
+        background-color: aqua;
+    }
+    section{
+        background-color: aliceblue;
+    }
+</style>
+<body>
+    <div></div>
+    <section></section>
+</body>
+</html>
+<script>
+    const [div, section] = document.body.children;
+    div.draggable = true;
+    div.ondragstart = () => {
+        const transfer = event.dataTransfer;
+        // Mime-Type(마임타입)
+        transfer.setData('text/plain','하이^-^');
+        console.log(event.dataTransfer);
+    }
+    section.ondragover = event => {
+        event.preventDefault();
+    }
+    section.ondrop = () => {
+        const transfer = event.dataTransfer;
+        console.log('drop으로 받았음!', transfer.getData('text/plain'));
+        
+        section.style.backgroundColor = getComputedStyle(div).backgroundColor;
+    }
+</script>

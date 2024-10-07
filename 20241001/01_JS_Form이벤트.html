@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form> <!-- 아무 method 없으면 get -->
+        <input type="text" placeholder="3글자 이상 입력하세요"><br>
+        남<input type="radio" name="gender" value="남자"> <!-- name값을 동일하게 해야 그룹이 됨 -->
+        여<input type="radio" name="gender" value="여자"><br> <!-- name이 있어야 submit이 됨 -->
+        <input type="submit">
+    </form>
+    <a href="https://www.naver.com">네이버이동</a>
+</body>
+</html>
+<script>
+    const form = document.forms[0];
+    const [textInput, radioInput1, radioInput2, submitInput] = document.querySelectorAll('input');
+    const aTag = document.querySelector('a');
+
+    // input의 value가 변경될 때마다 (실시간)
+    textInput.oninput = () => {
+        console.log('input 이벤트 동작');
+        if(textInput.value.length < 3){
+            textInput.style.color = 'red';
+        }
+        else{
+            textInput.style.color = 'black';
+        }
+    }
+    // input의 value가 변경 완료되면 (focus를 잃어야 함)
+    textInput.onchange = () => {
+        console.log('change 이벤트 동작');
+    }
+
+    radioInput1.oninput = () => {
+        console.log('radioInput1 - input 이벤트 동작', radioInput1.value);
+    }
+    radioInput1.onchange = () => {
+        console.log('radioInput1 - change 이벤트 동작', radioInput1.value);
+    }
+    radioInput2.oninput = () => {
+        console.log('radioInput2 - input 이벤트 동작', radioInput2.value);
+    }
+    radioInput2.onchange = () => {
+        console.log('radioInput2 - change 이벤트 동작', radioInput2.value);
+    }
+
+    // 폼 안에서 submit 동작이 이루어졌을 시 submit하지 않는다
+    form.onsubmit = event => {
+        // alert('submit!!!');
+        // event.cancelable 이 true인 이벤트만 취소할 수 있다
+        console.log(event.cancelable); // true
+        event.preventDefault();
+    }
+    
+    // a 태그 클릭 시 이동을 막는다
+    aTag.onclick = event => {
+        event.preventDefault();
+    }
+</script>
