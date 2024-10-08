@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var obj = {
+        a: 1, 
+        b: '^-^ㅋ', 
+        c: true, 
+        d: [10,20,30], 
+        e: {1 : 100, z: 100}
+    };
+    console.log(obj);
+    // Javascript 객체를 문자열로 형변환 => [object Object]
+    // 의미가 없음
+    console.log(obj.toString());
+    // JSON 형태의 문자열로 변경하자
+    var jsonObject = JSON.stringify(obj); // 변경 결과는 문자열
+    console.log(jsonObject);
+    // 문자열 메서드 사용 가능
+    // var result = jsonObject.replaceAll('"','---');
+    // console.log(result);
+    
+    // JSON 형태의 문자열을 다시 javascript의 객체로 변경하자
+    var jsObject = JSON.parse(jsonObject);
+    console.log(jsObject);
+    // js 객체이기 때문에 일반적인 객체 사용하는 것처럼 사용할 수 있다
+    var result = jsObject['a']; // 'a'에 해당하는 value 가져오기
+    console.log(result);
+
+    /**************************************************************/  
+    
+    // 객체 프로퍼티 중 a와 b에 해당하는 프로퍼티들만 가져와서 변경
+    var jsonObject = JSON.stringify(obj, ['a','b']);
+    console.log('변경결과1:', jsonObject);
+    
+    // replacer를 사용해서 변경 시 key, value값에 따라 새로운 value를 결정하기
+    // space에 숫자 값을 넣어 들여쓰기 적용하기 (가독성)
+    // replacer, space는 잘 안 쓰임
+    var jsonObject = JSON.stringify(obj, replacer, 3);
+    console.log('변경결과2:', jsonObject);
+
+    function replacer(key, value){
+        // if(key === 'a'){
+        //     return 100; // a의 value가 100으로 바뀜
+        // }
+        if(value < 100){
+            return value * 100;
+        }
+        // console.log('replacer:', key, value);
+        return value;
+    }
+
+    /**************************************************************/
+
+    var obj = {'now': new Date()};
+    // 문자열로 변경
+    var jsonObject = JSON.stringify(obj); 
+    console.log('stringify 결과:',jsonObject);
+    
+    // 다시 객체로 변경 
+    // 객체로 변경할 때, 내가 원하는 요소만 가져가서 객체로 가져오기
+    var jsObject = JSON.parse(jsonObject, reviver);
+    console.log('parse 결과:', jsObject);
+
+    function reviver(key, value){
+        console.log('reviver:', key, value);
+        if(key === 'now'){
+            return new Date();
+        }
+        return value;
+    }
+
+    // XML, JSON, CSV, YAML 중에서 최근에 제일 많이 쓰는 게 JSON 다음으로 CSV
+</script>

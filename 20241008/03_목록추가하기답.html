@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>순번</th>
+                <th width="200">제목</th>
+                <th>닉네임</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <section>
+        <label>제목<input type="text"></label>
+        <label>닉네임<input type="text"></label>
+        <input type="button" value="추가">
+    </section>
+</body>
+</html>
+<script>
+    const [titleInput, nicknaemInput, confirmInput] = document.getElementsByTagName('input');
+    const tbody = document.querySelector('tbody');
+    let no = 1;
+
+    confirmInput.onclick = () => {
+        const title = titleInput.value;
+        const nickname = nicknaemInput.value;
+
+        // 둘 중 하나라도 작성하지 않았다
+        if(title.trim() === '' || nickname.trim() === ''){
+            alert('작성해라!');
+            return;
+        }
+
+        // 둘다 잘 작성했다면 작성한 내용을 지운다
+        titleInput.value = '';
+        nicknaemInput.value = ''
+        
+        // 작성한 내용으로 한 줄 추가한다
+        tbody.insertAdjacentHTML(`beforeend`,
+            `<tr>
+                <td>${no++}</td>
+                <td>${title}</td>
+                <td>${nickname}</td>
+                <td><button type="button">삭제</td>
+            </tr>`
+        );
+        const deleteBtn = document.querySelectorAll('button[type="button"]');
+        const trlst = document.querySelectorAll('tr');
+        console.log(trlst);
+        
+        for(let i = 0; i<deleteBtn.length;i++){
+            deleteBtn[i].onclick = () => { 
+                trlst[i+1].remove();
+            }
+        }
+    }
+
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>순번</th>
+                <th width="200">제목</th>
+                <th>닉네임</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <section>
+        <label>제목<input type="text"></label>
+        <label>닉네임<input type="text"></label>
+        <input type="button" value="추가">
+    </section>
+</body>
+</html>
+<script>
+    const [title, nickname, btn] = document.querySelectorAll('input');
+    const lst = document.getElementsByTagName('table');
+    const body = lst[0].tBodies.item(0);
+    let count = 1;
+    let rowcount = 0;
+
+    btn.onclick = () => {
+        const titleValue=title.value;
+        const nicknameValue=title.value;
+
+        if(titleValue.trim() === '' || nicknameValue.trim() === ''){
+            return;
+        }
+
+        const r = body.insertRow(rowcount++);
+        const r1c0 = r.insertCell(0);
+        r1c0.textContent = count++;
+        const r1c1 = r.insertCell(1);
+        r1c1.textContent = title.value;
+        const r1c2 = r.insertCell(2);
+        r1c2.textContent = nickname.value; 
+
+        title.value='';
+        nickname.value='';
+    }
+
+
+</script>
