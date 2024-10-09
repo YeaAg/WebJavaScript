@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<style>
+    #container{
+        display: grid;
+        grid-template-columns: 60px 180px;
+        grid-template-rows: 30px 30px 30px;
+    }
+    #cell_one{
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column: 1;
+        position: relative;
+        overflow: hidden; /* 아이콘이 div를 넘지 않도록 */
+        border-radius: 50%;
+        background-color: gainsboro;
+    }
+    #sale_code_input{
+        margin-left: 10px;
+    }
+    #sale_code{
+        border: none;
+        border-bottom: 1px solid black;
+        font-size: 17px;
+    }
+    #sale_code_title{
+        display: flex;
+        align-items: center;
+        margin-left: 11px;
+    }
+    #sale_code_title>p{
+        font-size: 13px;
+        font-weight: bold;
+    }
+    #sale_btn_div{
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+    }
+    #sale_btn{
+        font-size: 12px;
+        padding: 3px 7px;
+        background-color: white;
+        border: 1px solid gray;
+        border-radius: 3px 3px 3px 3px;
+    }
+    #icon{
+        position: absolute;
+        top: 50%;
+        left: 50%; 
+        transform: translate(-50%, -50%); /* 중앙 정렬 */
+        font-size: 25px;
+        color: white;
+    }
+</style>
+<body>
+    <div id="container">
+        <div id="cell_one"><i id="icon" class="bi bi-window-stack"></i></div>
+        <div id="sale_code_title"><p>할인코드</p></div>
+        <div id="sale_code_input"><input type="text" id="sale_code" placeholder="할인코드 입력"></div>
+        <div></div>
+        <div id="sale_btn_div"><input type="button" value="할인코드 규정" id="sale_btn"></div>
+    </div>
+</body>
+</html>
