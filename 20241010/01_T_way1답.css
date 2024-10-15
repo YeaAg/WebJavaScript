@@ -1,0 +1,77 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+section > div {
+    display: inline-block;
+    vertical-align: top;
+}
+.icon-container{
+    /* 중앙 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: gainsboro;
+}
+.icon-container > i{
+    font-size: 20px;
+    color: white;
+}
+
+.discount-container > button{
+    position: relative;
+    border: none;
+    background-color: unset;
+    &:hover > .discount-information-container{
+        display: block;
+    }
+}
+.discount-container i{
+    cursor: pointer;
+    &:hover{
+        color: gainsboro;
+    }
+}
+.discount-information-container{
+    display: none;
+    position: absolute;
+    text-align: left;
+    bottom: -85px;
+    left: -100px;
+    padding: 5px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: white;
+}
+.discount-information-container h3{
+    margin-bottom: 10px;
+}
+.discount-information-container p{
+    font-size: 8px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.discount-code-container{
+    margin-bottom: 5px;
+}
+.discount-code-container input{
+    padding: 2px 5px;
+}
+.discount-code-container input {
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.discount-summary-container > button{
+    background-color: white;
+    padding: 2px 5px;
+    border-radius: 4px;
+    border: 1px solid gainsboro;
+    cursor: pointer;
+}

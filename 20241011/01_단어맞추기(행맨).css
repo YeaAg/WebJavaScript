@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    text-align: center;
+}
+
+#answer-sheet{
+    margin: 20px;
+}
+
+#answer-sheet > span{
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+#alphabet-sheet > button{
+    width: 30px;
+    height: 30px; 
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;   
+}
